@@ -67,15 +67,15 @@ these hooks don't need to find the configuration for their particular database.
 	*SYNCUP_SKIP_PRE* as boolean values. If true, then the corresponding set of
 	hooks is skipped.
 
-SYNCUP_HOOK_DIR::
+*SYNCUP_HOOK_DIR*::
 	Equivalent to specifying the *-H* option on the command line.
 
-SYNCUP_LOCK_FILE::
+*SYNCUP_LOCK_FILE*::
 	If set, *synup* will interpret the value of *SYNCUP_LOCK_FILE* as an
 	absolute path for the lock file to use to ensure only one *syncup* process
 	runs at a time.
 
-SYNCUP_VERBOSE::
+*SYNCUP_VERBOSE*::
 	Equivalent to specifying the *-v* option on the command line.
 
 == Files
