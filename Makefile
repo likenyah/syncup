@@ -33,6 +33,6 @@ install: syncup syncup.1
 	scripts/gen-version
 
 syncup.1: syncup.1.adoc .version.mk
-	asciidoctor -b manpage -a manmanual="Syncup Manual" -a mansource="Syncup $(VERSION)" -o $@ $<
+	asciidoctor -a VERSION="$(VERSION)" -b manpage -o $@ $<
 
 .PHONY: all clean distclean install man

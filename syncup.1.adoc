@@ -1,4 +1,6 @@
 = syncup(1)
+:manmanual: General Commands Manual
+:mansource: Syncup {VERSION}
 
 == Name
 
