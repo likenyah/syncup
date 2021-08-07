@@ -18,8 +18,6 @@ the synchronised local store, and run pre– and post-sync hooks as appropriate.
 [POSIX.1-2017](https://pubs.opengroup.org/onlinepubs/9699919799/).
 
 Additionally, we depend on:
-* [**date**(1)](https://man.openbsd.org/date.1) implementation that supports
-  the `%s` format specifier.
 * [**flock**(1)](https://www.man7.org/linux/man-pages/man1/flock.1.html) to
   ensure that only one **syncup** process runs at a time.
 * [**mbsync**(1)](https://isync.sourceforge.io/mbsync.html) for the actual

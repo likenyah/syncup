@@ -2,7 +2,6 @@
 # SPDX-License-Identifier: 0BSD
 #
 # Syncup depends on utilities specified by POSIX-1.2017 and the following:
-# - date(1) implementation that supports the %s format specifier.
 # - flock(1) to ensure that only one syncup process runs at a time.
 # - mbsync(1) for the actual synchronisation.
 # - notmuch(1) for indexing of the new mail.
@@ -36,6 +35,14 @@ Options:
 : "${SYNCUP_SKIP_POST:="n"}"
 : "${SYNCUP_SKIP_PRE:="n"}"
 : "${SYNCUP_VERBOSE:="n"}"
+
+# Don't fail if we're missing %s from date(1), just don't time the
+# synchronisation instead.
+if date "+%s" 2>/dev/null | grep -Eq '^[0-9]+$'; then
+	syncup_have_date_s="y"
+else
+	syncup_have_date_s="n"
+fi
 
 _do_printf()
 {
@@ -160,7 +167,9 @@ _do_notmuch()
 
 main()
 {
-	_main_t0="$(date "+%s")"
+	if checkyn "${syncup_have_date_s}"; then
+		_main_t0="$(date "+%s")"
+	fi
 
 	if checkyn "${SYNCUP_SKIP_PRE}"; then
 		msg "skipping pre-sync hooks"
@@ -196,8 +205,10 @@ main()
 		fi
 	fi
 
-	_main_t1="$(date "+%s")"
-	msg "sync took %ss" "$((_main_t1 - _main_t0))"
+	if checkyn "${syncup_have_date_s}"; then
+		_main_t1="$(date "+%s")"
+		msg "sync took %ss" "$((_main_t1 - _main_t0))"
+	fi
 }
 
 if ! command -v flock >/dev/null 2>&1; then
