@@ -32,7 +32,7 @@ install: syncup syncup.1
 .version.mk:
 	scripts/gen-version
 
-syncup.1: README.adoc .version.mk
+syncup.1: syncup.1.adoc .version.mk
 	asciidoctor -b manpage -a manmanual="Syncup Manual" -a mansource="Syncup $(VERSION)" -o $@ $<
 
 .PHONY: all clean distclean install man
