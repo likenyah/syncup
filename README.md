@@ -1,5 +1,7 @@
 # syncup
 
+[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/E1E65IUF4)
+
 ## Overview
 
 **syncup** [ **-hv** ] [ **-C** _file_ ] [ **-H** _path_ ] [ **-c** _file_ ]
